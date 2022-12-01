@@ -4,38 +4,76 @@
 
 using namespace std;
 
-class MyRobot : public Robot {
-  size_t width, height, energy, power;
+class MyRobot1 : public Robot {
+  size_t width = 0, height = 0, energy = 0, power = 0;
 
 public:
-  MyRobot() : width(0), height(0), energy(0), power(0){};
-
-  void set_config(size_t width_init, size_t height_init,
-                          unsigned energy_init, unsigned power_init) override {
+  void setConfig(size_t width_init, size_t height_init, unsigned energy_init,
+                 unsigned power_init) override {
     width = width_init;
     height = height_init;
     energy = energy_init;
     power = power_init;
   };
 
-  std::string action(std::vector<std::string> updates) override {
+  string action(vector<string> updates) override {
     for (const auto &update : updates) {
-      vector<string> params = split(update, " ");
+      vector<string> params = split(update, " ", 2);
       cout << "Command: " << params.at(0) << endl;
+      cout << "Parameters: " << params.at(1) << endl;
     }
     return "wait";
   }
 
-  [[nodiscard]] std::string name() const override { return "My Robot"; }
+  [[nodiscard]] string name() const override { return "My 1st Robot"; }
+};
+
+class MyRobot2 : public Robot {
+  size_t width = 0, height = 0, energy = 0, power = 0;
+
+public:
+  void setConfig(size_t width_init, size_t height_init, unsigned energy_init,
+                 unsigned power_init) override {
+    width = width_init;
+    height = height_init;
+    energy = energy_init;
+    power = power_init;
+  };
+
+  string action(vector<string> updates) override {
+    string action = "wait";
+    for (const auto &update : updates) {
+      vector<string> params = split(update, " ", 2);
+      cout << "Command: " << params.at(0) << endl;
+      cout << "Parameters: " << params.at(1) << endl;
+      if (params.at(0) == "damage") {
+        action = "attack " + params.at(1);
+      }
+    }
+    return action;
+  }
+
+  [[nodiscard]] string name() const override { return "My 2nd Robot"; }
 };
 
 int main() {
-  vector<Robot *> robots = {new MyRobot()};
-  robots.at(0)->set_config(2, 2, 10, 1);
-  cout << "Name of the robot: " << robots.at(0)->name() << endl;
-  cout << "Empty action is: " << robots.at(0)->action(vector<string>()) << endl;
-  cout << "Attack action is: "
-       << robots.at(0)->action(vector<string>{"board     ", "attack -1,-1,1"})
-       << endl;
+  vector<Robot *> robots = {new MyRobot1(), new MyRobot2()};
+  for (auto &robot : robots) {
+    cout << "Initializing robot " << robot->name() << endl;
+    robot->setConfig(2, 2, 10, 1);
+  }
+
+  for (auto &robot : robots) {
+    cout << "Sending only board update to robot " << robot->name() << endl;
+    string action = robot->action(vector<string>{"board R    B    R"});
+    cout << "Robot asked for action: " << action << endl;
+  }
+
+  for (auto &robot : robots) {
+    cout << "Sending 'board' and 'damage' to " << robot->name() << endl;
+    string action =
+        robot->action(vector<string>{"board R    B    R", "damage -1,1,1"});
+    cout << "Robot asked for action: " << action << endl;
+  }
   return 0;
 }

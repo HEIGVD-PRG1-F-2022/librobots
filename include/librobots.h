@@ -34,7 +34,7 @@ public:
    * @param power to startwith
    */
   virtual void setConfig(size_t width, size_t height, unsigned energy,
-                          unsigned power) = 0;
+                         unsigned power) = 0;
   /**
    * Requests an action from the robot - here the strategy must be
    * implemented.
