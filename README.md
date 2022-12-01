@@ -12,7 +12,7 @@ include(FetchContent) # once in the project to include the module
 
 FetchContent_Declare(librobots
         GIT_REPOSITORY https://github.com/HEIGVD-PRG1-F-2022/librobots.git
-        GIT_TAG v0.1.1
+        GIT_TAG v0.1.2
         )
 FetchContent_MakeAvailable(librobots)
 
@@ -28,12 +28,12 @@ implémentant la classe abstraite `Robot`:
 ```c++
 #include <librobots.h>
 
-class MyRobot : public Robot {
+class MyRobot1 : public Robot {
     // Implement all virtual methods here
 }
 
 int main(){
-    vector<Robot> robots = {new MyRobot()};
+    vector<Robot> robots = {new MyRobot1()};
     // Utiliser le vecteur 'robots'
     return 0;
 }
