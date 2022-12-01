@@ -21,3 +21,22 @@ FetchContent_MakeAvailable(librobots)
 # Replace `PROJECT` with the name of your executable
 target_link_libraries(PROJECT PRIVATE librobots)
 ```
+
+Après vous pouvez utiliser la librairie en l'important et déclarant votre classe comme
+implémentant la classe abstraite `Robot`:
+
+```c++
+#include <librobots.h>
+
+class MyRobot : public Robot {
+    // Implement all virtual methods here
+}
+
+int main(){
+    vector<Robot> robots = {new MyRobot()};
+    // Utiliser le vecteur 'robots'
+    return 0;
+}
+```
+
+Pour un exemple plus complet, voir [exemple](example/main.cpp).
