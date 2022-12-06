@@ -12,7 +12,7 @@ include(FetchContent) # once in the project to include the module
 
 FetchContent_Declare(librobots
         GIT_REPOSITORY https://github.com/HEIGVD-PRG1-F-2022/librobots.git
-        GIT_TAG v0.1.2
+        GIT_TAG v0.2.0
         )
 FetchContent_MakeAvailable(librobots)
 
@@ -40,3 +40,47 @@ int main(){
 ```
 
 Pour un exemple plus complet, voir [exemple](example/main.cpp).
+
+# Classes disponibles
+
+Pour vous aider dans vos projets, j'ai ajouté les classes suivantes:
+
+## Bonus
+
+[Bonus](include/librobots/Bonus.h):
+
+The bonus class is very simply and probably could be a `struct`. It exposes its
+variables as public members.
+
+## Direction
+
+[Direction](include/librobots/Direction.h):
+
+A direction towards another object. It can be used together with the Position class.
+
+## Message
+
+[Message](include/librobots/Message.h):
+
+A message is an interpretation of the string passed between the game
+engine and the robot.
+It also has static methods that allow to create a string based on the
+values.
+Instead of getters, all variables are public.
+
+## Position
+
+[Position](include/librobots/Position.h):
+
+Represents a Position either with wraparound or without. If a width and height
+are given, the + and - operations will wrap around.
+
+## RobotState
+
+[RobotState](include/librobots/RobotState.h):
+
+The RobotState holds a robot together with all its necessary values:
+its position, energy, and power.
+It collects updates in a cache until the game decides to update the robots.
+The resulting action is stored in RobotState for the game to retrieve at a
+later moment.
