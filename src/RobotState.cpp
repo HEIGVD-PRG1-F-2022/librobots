@@ -1,7 +1,7 @@
 #include "librobots/RobotState.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 

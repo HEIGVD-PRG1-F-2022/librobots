@@ -4,10 +4,10 @@
 
 #include "librobots/Message.h"
 #include "librobots/Robot.h"
+#include <algorithm>
 #include <cassert>
 #include <cstdarg>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
