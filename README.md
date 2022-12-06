@@ -12,7 +12,7 @@ include(FetchContent) # once in the project to include the module
 
 FetchContent_Declare(librobots
         GIT_REPOSITORY https://github.com/HEIGVD-PRG1-F-2022/librobots.git
-        GIT_TAG v0.2.0
+        GIT_TAG v0.2.1
         )
 FetchContent_MakeAvailable(librobots)
 
