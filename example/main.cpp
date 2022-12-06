@@ -1,5 +1,9 @@
 #include <iostream>
-#include <librobots.h>
+#include <librobots/Direction.h>
+#include <librobots/Message.h>
+#include <librobots/Position.h>
+#include <librobots/Robot.h>
+#include <librobots/RobotState.h>
 #include <vector>
 
 using namespace std;
@@ -56,7 +60,7 @@ public:
   [[nodiscard]] string name() const override { return "My 2nd Robot"; }
 };
 
-int main() {
+void testRobots() {
   vector<Robot *> robots = {new MyRobot1(), new MyRobot2()};
   for (auto &robot : robots) {
     cout << "Initializing robot " << robot->name() << endl;
@@ -75,5 +79,13 @@ int main() {
         robot->action(vector<string>{"board R    B    R", "damage -1,1,1"});
     cout << "Robot asked for action: " << action << endl;
   }
+}
+
+int main() {
+  testRobots();
+  testDirection();
+  testMessage();
+  testPosition();
+  testRobotState();
   return 0;
 }
