@@ -7,6 +7,7 @@
 #include <cassert>
 #include <cstdarg>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
