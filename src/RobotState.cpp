@@ -1,4 +1,5 @@
 #include "librobots/RobotState.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 
