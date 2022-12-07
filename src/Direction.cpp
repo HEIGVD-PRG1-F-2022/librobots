@@ -67,6 +67,14 @@ Direction &Direction::neg() {
     return *this;
 }
 
+Direction &Direction::rotate(double angle) {
+    double newX = dx * cos(angle) - dy * sin(angle);
+    double newY = dx * sin(angle) + dy * cos(angle);
+    dx = int(newX);
+    dy = int(newY);
+    return *this;
+}
+
 Direction operator+(Direction dir, const Direction &other) {
     return dir += other;
 }

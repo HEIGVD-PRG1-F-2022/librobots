@@ -66,15 +66,18 @@ void RobotState::actionPower(unsigned bonusPower) {
 
 void RobotState::checkCollision(RobotState &other) {
     if (pos == other.pos) {
-        if (energy <= other.energy) {
-            other.energy -= energy;
+        auto damage = min(energy, other.energy);
+        energy -= damage;
+        other.energy -= damage;
+        if (energy == 0) {
             deathCause = "Collision with " + other.getName();
-            energy = 0;
         } else {
-            energy -= other.energy;
-            updates_cache.push_back(Message::updateDamage(Direction(), other.energy));
-            other.energy = 0;
+            other.updates_cache.push_back(Message::updateDamage(Direction(), damage));
+        }
+        if (other.energy == 0) {
             other.deathCause = "Collision with " + getName();
+        } else {
+            updates_cache.push_back(Message::updateDamage(Direction(), damage));
         }
     }
 }
