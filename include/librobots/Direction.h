@@ -67,6 +67,10 @@ public:
     /// The magnitude of the direction.
     [[nodiscard]] double mag() const;
 
+    /// Change the direction of the vector counterclockwise.
+    /// The angle is given in radians.
+    Direction &rotate(double angle);
+
     /// Negate the direction
     [[nodiscard]] Direction &neg();
 
