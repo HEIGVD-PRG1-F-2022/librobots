@@ -11,22 +11,29 @@ RobotState::RobotState(Robot *robot, Position pos, size_t side, unsigned energy,
     robot->setConfig(side, side, energy, power);
 }
 
-string RobotState::getName() { return robot->name(); }
+string RobotState::getName() const { return robot->name(); }
 
-Message RobotState::getAction() { return action; }
+Message RobotState::getAction() const { return action; }
 
 unsigned RobotState::getPower() const { return power; }
 
 Position RobotState::getPosition() const { return pos; }
+
+unsigned int RobotState::getEnergy() const { return energy; }
+
+string RobotState::getDeathCause() const {
+    return deathCause;
+}
 
 bool RobotState::isDead() const { return energy == 0; }
 
 void RobotState::actionAttack(const RobotState &attacker,
                               const Position &dest) {
     if (dest == pos) {
-        if (attacker.power <= energy) {
+        if (attacker.power < energy) {
             energy -= attacker.power;
         } else {
+            deathCause = "attack from " + attacker.getName();
             energy = 0;
         }
     }
@@ -61,11 +68,13 @@ void RobotState::checkCollision(RobotState &other) {
     if (pos == other.pos) {
         if (energy <= other.energy) {
             other.energy -= energy;
+            deathCause = "Collision with " + other.getName();
             energy = 0;
         } else {
             energy -= other.energy;
             updates_cache.push_back(Message::updateDamage(Direction(), other.energy));
             other.energy = 0;
+            other.deathCause = "Collision with " + getName();
         }
     }
 }
@@ -76,9 +85,21 @@ void RobotState::sendUpdate(const string &updateBoard) {
     copy(updates_cache.begin(), updates_cache.end(), updates.begin() + 1);
     auto action_str = robot->action(updates);
     action = Message(action_str);
+    switch (action.msg) {
+        case MessageType::ActionMove:
+            action.robots.at(0).unitary();
+            break;
+        case MessageType::ActionAttack:
+            if (action.robots.at(0).mag() >= 3) {
+                action.robots.at(0).unitary();
+                action.robots.at(0) *= 2;
+            }
+            break;
+        default:
+            break;
+    }
     updates_cache.clear();
 }
-unsigned int RobotState::getEnergy() const { return energy; }
 
 class RobotDummy : public Robot {
 public:

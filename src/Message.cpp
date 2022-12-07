@@ -64,10 +64,20 @@ Message::Message(const string &s) {
     }
 }
 
-vector<string> Message::updateBoard(const vector<Position> &robots) {
+std::string Message::getMessageType() const {
+    return MESSAGE_STRINGS[size_t(msg)];
+}
+
+vector<string> Message::updateBoard(const vector<Position> &robots, const vector<Position> &boni) {
     vector<string> ret;
     for (auto src: robots) {
         string board(25, ' ');
+        for (auto bonus: boni) {
+            auto dir = src.directionTo(bonus);
+            if (dir.mag() < 3) {
+                board[dir.indexSquare(5)] = 'B';
+            }
+        }
         for (auto dst: robots) {
             if (src != dst) {
                 auto dir = src.directionTo(dst);
