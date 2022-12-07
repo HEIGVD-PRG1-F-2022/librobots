@@ -63,7 +63,10 @@ public:
    * @return a vector of UpdateBoard messages that can be sent to the robots.
    */
     static std::vector<std::string>
-    updateBoard(const std::vector<Position> &robots);
+    updateBoard(const std::vector<Position> &robots, const std::vector<Position> &boni = std::vector<Position>());
+
+    /// Returns the message type as a string
+    std::string getMessageType() const;
 
     /// Returns an UpdateDamage message.
     static std::string updateDamage(Direction direction, unsigned energy);

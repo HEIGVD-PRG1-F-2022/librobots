@@ -23,6 +23,12 @@ class Direction {
     /// Subtracting two Direction s
     friend Direction operator-(Direction dir, const Direction &other);
 
+    /// Multiplying a Direction with a double
+    friend Direction operator*(Direction dir, double mult);
+
+    /// Dividing a Direction with a double
+    friend Direction operator/(Direction dir, double div);
+
     /// Outputting a Direction
     friend std::ostream &operator<<(std::ostream &out, const Direction &pos);
 
@@ -46,6 +52,12 @@ public:
     /// Subtraction operand.
     Direction &operator-=(const Direction &dir);
 
+    /// Multiplication operand.
+    Direction &operator*=(double mult);
+
+    /// Division operand.
+    Direction &operator/=(double div);
+
     /// Returns a copy of dX.
     [[nodiscard]] int getdX() const;
 
@@ -54,6 +66,9 @@ public:
 
     /// The magnitude of the direction.
     [[nodiscard]] double mag() const;
+
+    /// Negate the direction
+    [[nodiscard]] Direction &neg();
 
     /// Returns the index to a vector (or string) representing a square
     /// with all possible positions from (-side/2, -side/2) to (side/2, side/2).

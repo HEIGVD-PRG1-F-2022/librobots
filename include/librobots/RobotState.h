@@ -27,6 +27,9 @@ class RobotState {
     /// The energy and the power of the robot.
     unsigned energy, power;
 
+    /// Cause of death
+    std::string deathCause;
+
     /// A cache for putting new update messages before they are sent to the robot.
     std::vector<std::string> updates_cache;
 
@@ -46,7 +49,7 @@ public:
                         unsigned power);
 
     /// Getter for the name of the robot
-    std::string getName();
+    std::string getName() const;
 
     /// Getter for the power of this robot
     [[nodiscard]] unsigned getPower() const;
@@ -55,10 +58,13 @@ public:
     [[nodiscard]] unsigned int getEnergy() const;
 
     /// Getter for the last action sent by the robot
-    Message getAction();
+    Message getAction() const;
 
     /// Getter for the current position of the robot
     [[nodiscard]] Position getPosition() const;
+
+    /// Get the death cause of this robot
+    [[nodiscard]] std::string getDeathCause() const;
 
     /// Returns if this robot is dead or not
     [[nodiscard]] bool isDead() const;

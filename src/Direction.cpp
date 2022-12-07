@@ -49,12 +49,38 @@ Direction &Direction::operator-=(const Direction &dir) {
     return *this;
 }
 
+Direction &Direction::operator/=(double div) {
+    dx = int(dx / div);
+    dy = int(dy / div);
+    return *this;
+}
+
+Direction &Direction::operator*=(double div) {
+    dx = int(dx * div);
+    dy = int(dy * div);
+    return *this;
+}
+
+Direction &Direction::neg() {
+    dx *= -1;
+    dy *= -1;
+    return *this;
+}
+
 Direction operator+(Direction dir, const Direction &other) {
     return dir += other;
 }
 
 Direction operator-(Direction dir, const Direction &other) {
     return dir -= other;
+}
+
+Direction operator*(Direction dir, double mult) {
+    return dir *= mult;
+}
+
+Direction operator/(Direction dir, double div) {
+    return dir /= div;
 }
 
 bool operator==(const Direction &p1, const Direction &p2) {
