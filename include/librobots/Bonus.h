@@ -9,8 +9,8 @@
 
 /// Represents either an Energy or a Power bonus.
 enum class BonusType {
-  Energy,
-  Power,
+    Energy,
+    Power,
 };
 
 /**
@@ -19,19 +19,19 @@ enum class BonusType {
  */
 class Bonus {
 public:
-  /// The position of the bonus on the board
-  Position pos;
+    /// The position of the bonus on the board
+    Position pos;
 
-  /// Which type this bonus is
-  BonusType type;
+    /// Which type this bonus is
+    BonusType type;
 
-  /// The value - represents either the energy or the power.
-  unsigned value;
+    /// The value - represents either the energy or the power.
+    unsigned value;
 
-  /// Instantiates a bonus randomly with a position between 0..width and
-  /// 0..height and 1..=valueMax.
-  explicit Bonus(size_t width, size_t height, unsigned valueMax,
-                 BonusType type);
+    /// Instantiates a bonus randomly with a position between 0..width and
+    /// 0..height and 1..=valueMax.
+    explicit Bonus(size_t width, size_t height, unsigned valueMax,
+                   BonusType type);
 };
 
-#endif // INEITI_BONUS_H
+#endif// INEITI_BONUS_H
