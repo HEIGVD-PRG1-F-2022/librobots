@@ -62,6 +62,8 @@ public:
     [[nodiscard]] int getdX() const;
 
     /// Returns a copy of dY.
+    [[nodiscard]] int getdY() const;
+    /// Deprecated - will be removed in 0.3
     [[nodiscard]] int getY() const;
 
     /// The magnitude of the direction.

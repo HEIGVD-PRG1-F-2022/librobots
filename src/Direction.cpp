@@ -22,6 +22,7 @@ double Direction::mag() const { return hypot(dx, dy); }
 
 int Direction::getdX() const { return dx; }
 
+int Direction::getdY() const { return dy; }
 int Direction::getY() const { return dy; }
 
 Direction Direction::unitary() {

@@ -108,7 +108,7 @@ string format(const string &s, int count, ...) {
 }
 
 string Message::updateDamage(Direction direction, unsigned energy) {
-    return format("damage", 3, direction.getdX(), direction.getY(), energy);
+    return format("damage", 3, direction.getdX(), direction.getdY(), energy);
 }
 
 string Message::updateEnergy(unsigned energy) {
@@ -120,19 +120,19 @@ string Message::updatePower(unsigned power) {
 }
 
 string Message::updateBonus(Direction direction) {
-    return format("boni", 2, direction.getdX(), direction.getY());
+    return format("boni", 2, direction.getdX(), direction.getdY());
 }
 
 string Message::updateRobot(Direction direction) {
-    return format("robot", 2, direction.getdX(), direction.getY());
+    return format("robot", 2, direction.getdX(), direction.getdY());
 }
 
 string Message::actionMove(Direction direction) {
-    return format("move", 2, direction.getdX(), direction.getY());
+    return format("move", 2, direction.getdX(), direction.getdY());
 }
 
 string Message::actionAttack(Direction direction) {
-    return format("attack", 2, direction.getdX(), direction.getY());
+    return format("attack", 2, direction.getdX(), direction.getdY());
 }
 
 string Message::actionWait() { return "wait"; }

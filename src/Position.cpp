@@ -66,13 +66,13 @@ Position &Position::operator-=(const Position &pos) {
 }
 Position &Position::operator+=(const Direction &dir) {
     x += dir.getdX();
-    y += dir.getY();
+    y += dir.getdY();
     wrap();
     return *this;
 }
 Position &Position::operator-=(const Direction &dir) {
     x -= dir.getdX();
-    y -= dir.getY();
+    y -= dir.getdY();
     wrap();
     return *this;
 }

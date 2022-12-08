@@ -12,7 +12,7 @@ include(FetchContent) # once in the project to include the module
 
 FetchContent_Declare(librobots
         GIT_REPOSITORY https://github.com/HEIGVD-PRG1-F-2022/librobots.git
-        GIT_TAG v0.2.3
+        GIT_TAG v0.2.4
         )
 FetchContent_MakeAvailable(librobots)
 
@@ -43,6 +43,9 @@ Pour un exemple plus complet, voir [exemple](example/main.cpp).
 
 # CHANGELOG
 
+- v0.2.4
+  - Rename `Direction::getY` to `Direction::getdY` and marked `Direction::getY` as deprecated 
+  - Catch exception from `Message(str)` in `RobotState::sendUpdate`
 - v0.2.3 
   - Add `Direction::turn` and fixes `RobotState::CheckCollision` to correctly send messages 
 - v0.2.2
