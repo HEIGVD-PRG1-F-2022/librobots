@@ -20,7 +20,7 @@ Message::Message(const string &s) {
     auto it =
             find(MESSAGE_STRINGS.begin(), MESSAGE_STRINGS.end(), cmd_args.at(0));
     if (it == MESSAGE_STRINGS.end()) {
-        throw runtime_error("This string is not a message");
+        throw runtime_error("This string is not a message: " + s);
     }
     msg = MessageType(it - MESSAGE_STRINGS.begin());
     if (cmd_args.size() > 1) {
