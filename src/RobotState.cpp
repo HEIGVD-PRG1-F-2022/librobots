@@ -86,8 +86,14 @@ void RobotState::sendUpdate(const string &updateBoard) {
     vector<string> updates(1 + updates_cache.size());
     updates.at(0) = updateBoard;
     copy(updates_cache.begin(), updates_cache.end(), updates.begin() + 1);
-    auto action_str = robot->action(updates);
-    action = Message(action_str);
+    try {
+        auto action_str = robot->action(updates);
+        action = Message(action_str);
+    } catch (runtime_error &s) {
+        deathCause = "Exception: " + string(s.what());
+        energy = 0;
+        return;
+    }
     switch (action.msg) {
         case MessageType::ActionMove:
             action.robots.at(0).unitary();
