@@ -14,4 +14,3 @@ jobs:
           fetch-depth: 0
       - name: Tagging
         run: make tag
-        

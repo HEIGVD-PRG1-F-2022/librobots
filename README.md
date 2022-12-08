@@ -41,6 +41,22 @@ int main(){
 
 Pour un exemple plus complet, voir [exemple](example/main.cpp).
 
+# CHANGELOG
+
+- v0.2.3 
+  - Add `Direction::turn` and fixes `RobotState::CheckCollision` to correctly send messages 
+- v0.2.2
+  - Added * and / to Direction, as well as 'neg'
+  - RobotState now has a deathCause and verifies the return actions from the robot
+  - Message now also shows the boni in the board
+  - Message returns the type as a string
+- v0.2.1
+ - fixing includes 
+- v0.2.0 
+  - ajout de librairies pour le projet  
+- v0.1 
+  - version initiale
+
 # Classes disponibles
 
 Pour vous aider dans vos projets, j'ai ajouté les classes suivantes:
