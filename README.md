@@ -43,6 +43,7 @@ Pour un exemple plus complet, voir [exemple](example/main.cpp).
 
 # CHANGELOG
 
+  - Correctly updating the attack message in `RobotState`
 - v0.2.4
   - Rename `Direction::getY` to `Direction::getdY` and marked `Direction::getY` as deprecated 
   - Catch exception from `Message(str)` in `RobotState::sendUpdate`
