@@ -32,6 +32,7 @@ void RobotState::actionAttack(const RobotState &attacker,
     if (dest == pos) {
         if (attacker.power < energy) {
             energy -= attacker.power;
+            updates_cache.push_back(Message::updateDamage(pos.directionTo(attacker.pos), attacker.power));
         } else {
             deathCause = "attack from " + attacker.getName();
             energy = 0;
