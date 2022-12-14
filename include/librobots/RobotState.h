@@ -78,8 +78,8 @@ public:
     /// Executes the move of a robot.
     void actionMove(const Direction &relative);
 
-    /// Stores the position of the other robots in the update_cache.
-    void actionRadar(const std::vector<Position> &positions);
+    /// Stores the position of the other robots and the boni in the update_cache.
+    void actionRadar(const std::vector<Position> &positions, const std::vector<Position> &boni = std::vector<Position>());
 
     /// Stores the position of the new bonus in the update_cache.
     void actionBonus(const Position &bonus);

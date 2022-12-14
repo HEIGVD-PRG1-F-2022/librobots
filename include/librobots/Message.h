@@ -38,7 +38,8 @@ public:
     /// The interpreted message.
     MessageType msg;
 
-    /// A direction of all robots in the UpdateBoard message. Or one robot for the
+    /// A direction of all robots in the
+    /// message. Or one robot for the
     /// UpdateRobot and UpdateDamage message, or the direction for the
     /// ActionMove and ActionAttack messages.
     std::vector<Direction> robots;

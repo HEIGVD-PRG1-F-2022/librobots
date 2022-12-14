@@ -42,12 +42,15 @@ void RobotState::actionAttack(const RobotState &attacker,
 
 void RobotState::actionMove(const Direction &relative) { pos += relative; }
 
-void RobotState::actionRadar(const std::vector<Position> &positions) {
+void RobotState::actionRadar(const std::vector<Position> &positions, const std::vector<Position> &boni) {
     for (auto p: positions) {
         if (pos == p) {
             continue;
         }
         updates_cache.push_back(Message::updateRobot(pos.directionTo(p)));
+    }
+    for (auto p: boni) {
+        updates_cache.push_back(Message::updateBonus(pos.directionTo(p)));
     }
 }
 

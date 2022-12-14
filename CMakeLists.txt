@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(librobots VERSION 0.2.5 DESCRIPTION "Librairie pour les robots")
+project(librobots VERSION 0.2.6 DESCRIPTION "Librairie pour les robots")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
