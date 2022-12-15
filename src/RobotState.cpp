@@ -8,10 +8,21 @@ using namespace std;
 RobotState::RobotState(Robot *robot, Position pos, size_t side, unsigned energy,
                        unsigned power)
     : robot(robot), pos(pos), energy(energy), power(power) {
-    robot->setConfig(side, side, energy, power);
+    try {
+        robot->setConfig(side, side, energy, power);
+    } catch (...){
+        cout << "Couldn't setConfig for " << getName() << endl;
+        energy = 0;
+    }
 }
 
-string RobotState::getName() const { return robot->name(); }
+string RobotState::getName() const {
+    try {
+        return robot->name();
+    } catch (...){
+        return "Error in name";
+    }
+}
 
 Message RobotState::getAction() const { return action; }
 
@@ -95,6 +106,10 @@ void RobotState::sendUpdate(const string &updateBoard) {
         action = Message(action_str);
     } catch (runtime_error &s) {
         deathCause = "Exception: " + string(s.what());
+        energy = 0;
+        return;
+    } catch (...) {
+        deathCause = "General Exception";
         energy = 0;
         return;
     }
