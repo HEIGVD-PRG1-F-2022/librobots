@@ -51,7 +51,9 @@ void RobotState::actionAttack(const RobotState &attacker,
     }
 }
 
-void RobotState::actionMove(const Direction &relative) { pos += relative; }
+void RobotState::actionMove(const Direction &relative) {
+    pos += relative;
+}
 
 void RobotState::actionRadar(const std::vector<Position> &positions, const std::vector<Position> &boni) {
     for (auto p: positions) {
@@ -115,11 +117,11 @@ void RobotState::sendUpdate(const string &updateBoard) {
     }
     switch (action.msg) {
         case MessageType::ActionMove:
-            action.robots.at(0).unitary();
+            action.robots.at(0) = action.robots.at(0).unitary();
             break;
         case MessageType::ActionAttack:
             if (action.robots.at(0).mag() >= 3) {
-                action.robots.at(0).unitary();
+                action.robots.at(0) = action.robots.at(0).unitary();
                 action.robots.at(0) *= 2;
             }
             break;
