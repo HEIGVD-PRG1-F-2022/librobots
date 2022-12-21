@@ -10,7 +10,7 @@ RobotState::RobotState(Robot *robot, Position pos, size_t side, unsigned energy,
     : robot(robot), pos(pos), energy(energy), power(power) {
     try {
         robot->setConfig(side, side, energy, power);
-    } catch (...){
+    } catch (...) {
         cout << "Couldn't setConfig for " << getName() << endl;
         energy = 0;
     }
@@ -19,7 +19,7 @@ RobotState::RobotState(Robot *robot, Position pos, size_t side, unsigned energy,
 string RobotState::getName() const {
     try {
         return robot->name();
-    } catch (...){
+    } catch (...) {
         return "Error in name";
     }
 }
@@ -104,7 +104,7 @@ void RobotState::sendUpdate(const string &updateBoard) {
     try {
         auto action_str = robot->action(updates);
         action = Message(action_str);
-    } catch (runtime_error &s) {
+    } catch (exception &s) {
         deathCause = "Exception: " + string(s.what());
         energy = 0;
         return;
