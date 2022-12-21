@@ -71,8 +71,8 @@ Direction &Direction::neg() {
 Direction &Direction::rotate(double angle) {
     double newX = dx * cos(angle) - dy * sin(angle);
     double newY = dx * sin(angle) + dy * cos(angle);
-    dx = int(newX);
-    dy = int(newY);
+    dx = int(round(newX));
+    dy = int(round(newY));
     return *this;
 }
 
