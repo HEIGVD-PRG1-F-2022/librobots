@@ -120,7 +120,7 @@ string Message::updatePower(unsigned power) {
 }
 
 string Message::updateBonus(Direction direction) {
-    return format("boni", 2, direction.getdX(), direction.getdY());
+    return format("bonus", 2, direction.getdX(), direction.getdY());
 }
 
 string Message::updateRobot(Direction direction) {
