@@ -12,7 +12,7 @@
 using namespace std;
 
 const vector<string> MESSAGE_STRINGS = {"board", "damage", "energy", "power",
-                                        "boni", "robot", "move", "attack",
+                                        "bonus", "robot", "move", "attack",
                                         "wait", "radar"};
 
 Message::Message(const string &s) {
