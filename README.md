@@ -12,7 +12,7 @@ include(FetchContent) # once in the project to include the module
 
 FetchContent_Declare(librobots
         GIT_REPOSITORY https://github.com/HEIGVD-PRG1-F-2022/librobots.git
-        GIT_TAG v0.2.8
+        GIT_TAG v0.2.9
         )
 FetchContent_MakeAvailable(librobots)
 
@@ -43,6 +43,8 @@ Pour un exemple plus complet, voir [exemple](example/main.cpp).
 
 # CHANGELOG
 
+- v0.2.9
+  - Rename "boni" message of Message::updateBonus to "bonus"
 - v0.2.8
   - Rename "boni" element of Message::MESSAGE_STRINGS to "bonus"
 - v0.2.7
